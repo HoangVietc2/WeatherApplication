@@ -33,14 +33,7 @@ public class Weather {
     public void setCurrent(Current current) {
         this.current = current;
     }
-    @Override
-	public String toString() {
-		return "City: " + this.location.getName() + "," 
-                                + "Temperature: " + this.location.getCountry() + ","
-				+ "Temperature: " + this.current.getTemp_c() + " C," 
-				+ "Wind Speed: " + this.current.getWind_dir() + " Mph,"
-				;
-	}
+   
 }
 
 

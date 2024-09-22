@@ -1,0 +1,15 @@
+weather_client\ViewClient$4.class
+weather_server\Server.class
+https\SimpleHttpHelper.class
+weather_client\ViewClient$3.class
+model\Current.class
+https\HttpHelper.class
+weather_client\ViewClient$2.class
+model\Location.class
+weather_client\ViewClient$1.class
+api\ApiWeatherService.class
+api\ApiWeatherServiceImpl.class
+https\HttpResponse.class
+weather_client\ViewClient.class
+weather_server\ClientHandler.class
+model\Weather.class

@@ -25,7 +25,7 @@ public class Server {
             while(!serverSocket.isClosed()){
                 
                 Socket socket = serverSocket.accept();
-                System.out.println(socket.getInetAddress().getHostAddress()+ " connected with IP address ");
+                System.out.println("IP address " +socket.getInetAddress().getHostAddress()+ " connected");
                 ClientHandler clientHandler = new ClientHandler(socket);
                 
                 Thread thread = new Thread(clientHandler);
@@ -49,7 +49,7 @@ public class Server {
 
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket = new ServerSocket(2024);
-        System.out.println("Server start");
+        System.out.println("Server is running...");
         Server server = new Server(serverSocket);
         server.serverStart();
     }

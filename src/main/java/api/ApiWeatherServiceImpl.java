@@ -37,12 +37,15 @@ public class ApiWeatherServiceImpl implements ApiWeatherService{
             double lon = weatherResponse.path("location").path("lon").asDouble();
             int localtime_epoch = weatherResponse.path("location").path("localtime_epoch").asInt();
             String local_time = weatherResponse.path("location").path("localtime").asText();
-            String windDir = weatherResponse.path("current").path("wind_dir").asText();
+            String wind_mph = weatherResponse.path("current").path("wind_mph").asText();
+            String precip_mm = weatherResponse.path("current").path("precip_mm").asText();
             double temperature = weatherResponse.path("current").path("temp_c").asDouble();
+            int humidity = weatherResponse.path("current").path("humidity").asInt();
             String icon = "https:" + weatherResponse.path("current").path("condition").path("icon").asText();
-            
+            String text = weatherResponse.path("current").path("condition").path("text").asText();
+            System.out.println("TEXT" + text + precip_mm + wind_mph);
             Location location = new Location(locationName, country, lat, lon, localtime_epoch, local_time);
-            Current current = new Current(temperature, windDir, icon);
+            Current current = new Current(temperature, wind_mph, precip_mm, humidity , icon , text);
             return new Weather(location, current);
         } catch (Exception e) {
             e.printStackTrace();

@@ -10,18 +10,24 @@ package model;
  */
 public class Current {
     private double temp_c;
-    private String wind_dir;
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+    private String wind_mph;
+    private String precip_mm ;
+    private int humidity;
     private String icon;
+    private String text ;
 
-    // Getters and Setters
+    public Current(double temp_c, String wind_mph, String precip_mm, int humidity, String icon, String text) {
+        this.temp_c = temp_c;
+        this.wind_mph = wind_mph;
+        this.precip_mm = precip_mm;
+        this.humidity = humidity;
+        this.icon = icon;
+        this.text = text;
+    }
+
+    
+    
+    
     public double getTemp_c() {
         return temp_c;
     }
@@ -30,19 +36,47 @@ public class Current {
         this.temp_c = temp_c;
     }
 
-    public String getWind_dir() {
-        return wind_dir;
+    public String getWind_mph() {
+        return wind_mph;
     }
 
-    public void setWind_dir(String wind_dir) {
-        this.wind_dir = wind_dir;
+    public void setWind_mph(String wind_mph) {
+        this.wind_mph = wind_mph;
     }
 
-    public Current(double temp_c, String wind_dir, String icon) {
-        this.temp_c = temp_c;
-        this.wind_dir = wind_dir;
+    public String getPrecip_mm() {
+        return precip_mm;
+    }
+
+    public void setPrecip_mm(String precip_mm) {
+        this.precip_mm = precip_mm;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
         this.icon = icon;
     }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    
 
     
 }

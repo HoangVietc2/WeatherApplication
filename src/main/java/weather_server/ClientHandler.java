@@ -60,7 +60,7 @@ public class ClientHandler implements Runnable{
                 buffWriter.newLine();
                 buffWriter.flush();
             } else {
-                buffWriter.write("Không tìm thấy thông tin thời tiết.");
+                buffWriter.write("No weather  information found!");
                 buffWriter.newLine();
                 buffWriter.flush();
             }
