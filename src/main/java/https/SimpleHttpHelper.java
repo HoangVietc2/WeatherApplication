@@ -15,29 +15,29 @@ import java.net.URL;
  *
  * @author OS
  */
-public class SimpleHttpHelper implements HttpHelper{
+public class SimpleHttpHelper implements HttpHelper {
 
     @Override
     public HttpResponse get(String URL) throws MalformedURLException, IOException {
         StringBuilder sb = new StringBuilder();
         URL url = new URL(URL);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.setRequestProperty("Accept", "application/json");
-		
-		if (conn.getResponseCode() != 200) {
-			throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-		}
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Accept", "application/json");
 
-		BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+        if (conn.getResponseCode() != 200) {
+            throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+        }
 
-		String output;
-		while ((output = br.readLine()) != null) {
-			sb.append(output);
-		}
-		
-		conn.disconnect();
-		return new HttpResponse(sb.toString(), conn.getResponseCode());
+        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+
+        String output;
+        while ((output = br.readLine()) != null) {
+            sb.append(output);
+        }
+
+        conn.disconnect();
+        return new HttpResponse(sb.toString(), conn.getResponseCode());
     }
-    
+
 }

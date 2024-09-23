@@ -13,38 +13,41 @@ import java.net.Socket;
  * @author OS
  */
 public class Server {
-    private ServerSocket serverSocket ;
-    
-    public Server(ServerSocket serverSocket){
+
+    private ServerSocket serverSocket;
+
+    public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
-     public void serverStart(){
 
-        try{
+    public void serverStart() {
+
+        try {
             // check and loop the serverSocket
-            while(!serverSocket.isClosed()){
-                
+            while (!serverSocket.isClosed()) {
+
                 Socket socket = serverSocket.accept();
-                System.out.println("IP address " +socket.getInetAddress().getHostAddress()+ " connected");
+                System.out.println("IP address " + socket.getInetAddress().getHostAddress() + " connected");
                 ClientHandler clientHandler = new ClientHandler(socket);
-                
+
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }
-        } catch (IOException e){
+        } catch (IOException e) {
 
         }
     }
+
     // this will close the server
-    public void closerServer(){
-        
-        try{
-        if(serverSocket != null){
-            serverSocket.close();
+    public void closerServer() {
+
+        try {
+            if (serverSocket != null) {
+                serverSocket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch(IOException e){
-        e.printStackTrace();
-    }
     }
 
     public static void main(String[] args) throws Exception {

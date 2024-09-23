@@ -11,8 +11,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author OS
  */
 public class Location {
+
     private String name;
-    private String country ;
+    private String country;
 
     public Location(String name, String country, double lat, double lon, int localtime_epoch, String localtime) {
         this.name = name;
@@ -26,7 +27,7 @@ public class Location {
     private double lat; // Thêm trường lat
     private double lon; // Thêm trường lon
     private int localtime_epoch;
-    private String localtime ;
+    private String localtime;
 
     public int getLocaltime_epoch() {
         return localtime_epoch;
@@ -43,7 +44,6 @@ public class Location {
     public void setLocaltime(String localtime) {
         this.localtime = localtime;
     }
-    
 
     // Getter và Setter
     public String getName() {
@@ -62,7 +62,6 @@ public class Location {
         this.country = country;
     }
 
- 
     public double getLat() {
         return lat; // Thêm getter cho lat
     }

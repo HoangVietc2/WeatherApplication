@@ -9,12 +9,13 @@ package model;
  * @author OS
  */
 public class Current {
+
     private double temp_c;
     private String wind_mph;
-    private String precip_mm ;
+    private String precip_mm;
     private int humidity;
     private String icon;
-    private String text ;
+    private String text;
 
     public Current(double temp_c, String wind_mph, String precip_mm, int humidity, String icon, String text) {
         this.temp_c = temp_c;
@@ -25,9 +26,6 @@ public class Current {
         this.text = text;
     }
 
-    
-    
-    
     public double getTemp_c() {
         return temp_c;
     }
@@ -76,8 +74,4 @@ public class Current {
         this.text = text;
     }
 
-    
-
-    
 }
-

@@ -30,19 +30,19 @@ public class ViewClient extends javax.swing.JFrame {
 
     public ViewClient(Socket socket) {
         this.socket = socket;
-        
+
         try {
             buffReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             buffWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            
+
             readCityName();
         } catch (IOException e) {
             e.printStackTrace();
             //closeAll(socket, reader, writer);
         }
-        
-         initComponents();
-        
+
+        initComponents();
+
     }
 
     private void readCityName() {
@@ -51,10 +51,10 @@ public class ViewClient extends javax.swing.JFrame {
             public void run() {
                 String messageFromGroupChat;
 
-                while(socket.isConnected()) {
+                while (socket.isConnected()) {
                     try {
                         messageFromGroupChat = buffReader.readLine();
-                        if(isValidJson(messageFromGroupChat)){
+                        if (isValidJson(messageFromGroupChat)) {
                             ObjectMapper objectMapper = new ObjectMapper();
                             JsonNode weatherResponse = objectMapper.readTree(messageFromGroupChat);
                             String locationName = weatherResponse.path("location").path("name").asText();
@@ -74,15 +74,15 @@ public class ViewClient extends javax.swing.JFrame {
                             text_precip.setText(precip_mm + " mm");
                             text_pressure.setText(humidity + " %");
                             text_info.setText(text);
-                            
-                            URL url = new URL(icon);      
-                            Image image = ImageIO.read(url);      
-                            ImageIcon icon1 = new ImageIcon(image);       
+
+                            URL url = new URL(icon);
+                            Image image = ImageIO.read(url);
+                            ImageIcon icon1 = new ImageIcon(image);
                             img_main.setIcon(icon1);
-                        }else{
+                        } else {
                             JOptionPane.showMessageDialog(null, messageFromGroupChat);
                         }
-                    }catch(IOException e) {
+                    } catch (IOException e) {
                         closeAll(socket, buffReader, buffWriter);
                     }
                 }
@@ -90,8 +90,6 @@ public class ViewClient extends javax.swing.JFrame {
         }).start();
     }
 
-    
-    
     private boolean isValidJson(String message) {
         try {
             new ObjectMapper().readTree(message);
@@ -100,6 +98,7 @@ public class ViewClient extends javax.swing.JFrame {
             return false; // Nếu có lỗi, chuỗi không phải là JSON hợp lệ
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,9 +236,9 @@ public class ViewClient extends javax.swing.JFrame {
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         sendCityName();
-        
+
     }//GEN-LAST:event_btn_searchActionPerformed
-        
+
     private void sendCityName() {
         try {
             String nameToServer = tf_search.getText().trim();
@@ -247,15 +246,16 @@ public class ViewClient extends javax.swing.JFrame {
                 buffWriter.write(nameToServer);
                 buffWriter.newLine();
                 buffWriter.flush();
-                
+
                 tf_search.setText("");
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(null, "you must enter the city name!");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void closeAll(Socket socket, BufferedReader buffReader, BufferedWriter buffWriter) {
         try {
             if (buffReader != null) {
@@ -271,12 +271,13 @@ public class ViewClient extends javax.swing.JFrame {
             e.getStackTrace();
         }
     }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) throws IOException {
-       Socket socket = new Socket("localhost", 2024);
-       
+        Socket socket = new Socket("localhost", 2024);
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewClient(socket).setVisible(true);
@@ -300,6 +301,5 @@ public class ViewClient extends javax.swing.JFrame {
     private javax.swing.JLabel text_wind;
     private javax.swing.JTextField tf_search;
     // End of variables declaration//GEN-END:variables
-    
-   
+
 }

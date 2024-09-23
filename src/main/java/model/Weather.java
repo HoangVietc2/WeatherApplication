@@ -9,6 +9,7 @@ package model;
  * @author OS
  */
 public class Weather {
+
     private Location location;
     private Current current;
 
@@ -33,8 +34,5 @@ public class Weather {
     public void setCurrent(Current current) {
         this.current = current;
     }
-   
+
 }
-
-
-
